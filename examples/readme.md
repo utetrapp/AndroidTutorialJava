@@ -6,6 +6,7 @@ Hier finden Sie die im Tutorial entwickelten Beispiele. Es wird zur Reduktion de
 Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### Erste App: BMI (fertig)
+- Erklärvideo unter https://youtu.be/IiWxzRFJT9E
 - Einführung in Android Studio inkl. Debugger, Refactoring, extract string ressource, ...
 - Oberfläche mit LinearLayout, TextView, EditView und Button
 - Implementierung eines EventHandlers unter Verwendung der Lambda-Notation
