@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="header_bmi">BMI-Rechner</string>
+    <string name="hint_size">Größe in cm</string>
+    <string name="hint_weight">Gewicht in kg</string>
+    <string name="btn_bmi">Berechne den BMI</string>
+    <string name="warning_weight">Bitte Gewicht eingeben</string>
+    <string name="warning_size">Bitte Größe eingeben</string>
+</resources>
