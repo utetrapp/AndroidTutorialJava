@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ActivityCommunication</string>
+    <string name="lblStudents">Studierende</string>
+    <string name="edit">edit</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_city">Wohnort</string>
+    <string name="btn_save">speichern</string>
+</resources>
