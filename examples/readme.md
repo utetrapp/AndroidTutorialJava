@@ -7,26 +7,52 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### Erste App: BMI (fertig)
 - Erklärvideo unter https://youtu.be/IiWxzRFJT9E
+- Unterverzeichnis von examples: BMI
 - Einführung in Android Studio inkl. Debugger, Refactoring, extract string ressource, ...
 - Oberfläche mit LinearLayout, TextView, EditView und Button
 - Implementierung eines EventHandlers unter Verwendung der Lambda-Notation
 - setError, findViewById
 - Java-Grundlagen inkl. Integer.parseInt, String.format, isEmpty
 
-### Zwei Activities (in Planung)
+### Kommunikation zwischen Aktivitäten (fertig)
+- Erklärvideo unter https://youtu.be/IjZ2TaGJV8U
+- Unterverzeichnis von examples: ActivityCommunication
 - Activity life-cycle
+  - https://developer.android.com/guide/components/activities/activity-lifecycle
 - Serializable
-- Bundle
+  - https://developer.android.com/reference/java/io/Serializable
+- Intent
+  - https://developer.android.com/guide/components/intents-filters
 - Aufruf und Übergabe von Daten zwischen Activities
+  - https://developer.android.com/training/basics/firstapp/starting-activity#java
 - zurück implementieren
+- verwendete (spezielle) Methoden: startActivity, startActivityForResult, getSerializableExtra, setResult, finish, Überschreiben von onActivityResult und onSupportNavigateUp, setDisplayHomeAsUpEnabled, setDisplayShowHomeEnabled
 
-### Ressources und Styling (in Planung)
+
+### Resources, Styling und Mehrsprachigkeit (in Planung)
+- Resourcen
+  - https://developer.android.com/guide/topics/resources/providing-resources.html
+- Mehrsprachigkeit
+  - https://developer.android.com/distribute/best-practices/launch/localization-checklist
+  - https://developer.android.com/guide/topics/resources/multilingual-support
 - Density Buckets
-- Bilder 
+  - https://developer.android.com/training/multiscreen/screendensities
+- Bilder/Icon 
 - shape-Objekte
+  - https://developer.android.com/guide/topics/resources/drawable-resource#Shape
 - Material Design
+  - https://material.io/
+  - https://material.io/develop/android/docs/getting-started
+  - Farben: https://material.io/design/color/the-color-system.html#color-theme-creation
 - Farben
+  - Werkzeuge
+    - https://material.io/resources/color
+	- https://www.materialpalette.com
+	- https://contrastchecker.online/
 - Style
+  - https://developer.android.com/guide/topics/resources/style-resource
+- Theme
+  - https://developer.android.com/guide/topics/ui/look-and-feel/themes
 
 ### LinearLayout & ConstraintLayout (in Planung)
 - Layout-Manager
@@ -58,6 +84,12 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### Bibliotheken (Onboarding, Bilder, Charts, …) (in Planung)
 
+## Ausblick
+Architektur, Fragments, ViewModel, Navigation Component
+- https://developer.android.com/jetpack/guide
+- https://developer.android.com/guide/components/fragments
+- https://developer.android.com/topic/libraries/architecture/viewmodel
+- https://developer.android.com/guide/navigation
 
  
 
