@@ -29,7 +29,8 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 - verwendete (spezielle) Methoden: startActivity, startActivityForResult, getSerializableExtra, setResult, finish, Überschreiben von onActivityResult und onSupportNavigateUp, setDisplayHomeAsUpEnabled, setDisplayShowHomeEnabled
 
 
-### Resources, Styling und Mehrsprachigkeit (in Planung)
+### Resources, Styling und Mehrsprachigkeit (fertig)
+- Erklärvideo unter https://youtu.be/bfwhN9O9i6Q
 - Resourcen
   - https://developer.android.com/guide/topics/resources/providing-resources.html
 - Mehrsprachigkeit
@@ -51,6 +52,9 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - https://developer.android.com/guide/topics/resources/style-resource
 - Theme
   - https://developer.android.com/guide/topics/ui/look-and-feel/themes
+- Fonts
+  - https://developer.android.com/guide/topics/ui/look-and-feel/fonts-in-xml
+  - https://fonts.google.com/
 - Material Design
   - https://material.io/
   - https://material.io/develop/android/docs/getting-started
