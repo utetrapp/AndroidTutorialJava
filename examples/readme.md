@@ -37,14 +37,12 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - https://developer.android.com/guide/topics/resources/multilingual-support
 - Density Buckets
   - https://developer.android.com/training/multiscreen/screendensities
-- Bilder/Icon 
-- shape-Objekte
+  - dp/dpi: https://www.youtube.com/watch?v=tE3ox0RqfZ8
+- Bilder/Icon/Drawables
+  - https://developer.android.com/guide/topics/graphics/drawables 
   - https://developer.android.com/guide/topics/resources/drawable-resource#Shape
-- Material Design
-  - https://material.io/
-  - https://material.io/develop/android/docs/getting-started
-  - Farben: https://material.io/design/color/the-color-system.html#color-theme-creation
 - Farben
+  - https://material.io/develop/android/theming/color
   - Werkzeuge
     - https://material.io/resources/color
 	- https://www.materialpalette.com
@@ -53,11 +51,18 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - https://developer.android.com/guide/topics/resources/style-resource
 - Theme
   - https://developer.android.com/guide/topics/ui/look-and-feel/themes
+- Material Design
+  - https://material.io/
+  - https://material.io/develop/android/docs/getting-started
+  - Farben: https://material.io/design/color/the-color-system.html#color-theme-creation
+  - labs: https://codelabs.developers.google.com/?cat=Design
 
 ### LinearLayout & ConstraintLayout (in Planung)
 - Layout-Manager
 - LinearLayout
+  - https://developer.android.com/guide/topics/ui/layout/linear
 - ConstraintLayout
+  - https://developer.android.com/training/constraint-layout
 
 ### AlertDialog & Toasts (in Planung)
 - AlertDialog
