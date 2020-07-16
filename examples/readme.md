@@ -61,8 +61,12 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - Farben: https://material.io/design/color/the-color-system.html#color-theme-creation
   - labs: https://codelabs.developers.google.com/?cat=Design
 
-### LinearLayout & ConstraintLayout (in Planung)
-- LayoutManager
+### LinearLayout & ConstraintLayout (fertig)
+- Erklärvideo unter https://youtu.be/1U5p69lQ-Ek
+- https://dribbble.com/shots/popular/mobile
+- Layout (ViewGroup)
+  - https://developer.android.com/guide/topics/ui/declaring-layout 
+  - Beispielcode ist in DemoResources
 - LinearLayout
   - https://developer.android.com/guide/topics/ui/layout/linear
 - ConstraintLayout
