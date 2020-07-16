@@ -62,11 +62,12 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - labs: https://codelabs.developers.google.com/?cat=Design
 
 ### LinearLayout & ConstraintLayout (in Planung)
-- Layout-Manager
+- LayoutManager
 - LinearLayout
   - https://developer.android.com/guide/topics/ui/layout/linear
 - ConstraintLayout
   - https://developer.android.com/training/constraint-layout
+  - https://www.youtube.com/watch?v=hqEfshM5Vfw&list=PLWz5rJ2EKKc8oNHPWtq4_FUzJtzqFNb7e
 
 ### AlertDialog & Toasts (in Planung)
 - AlertDialog
@@ -99,6 +100,7 @@ Architektur, Fragments, ViewModel, Navigation Component
 - https://developer.android.com/guide/components/fragments
 - https://developer.android.com/topic/libraries/architecture/viewmodel
 - https://developer.android.com/guide/navigation
+- https://developer.android.com/guide/navigation/navigation-migrate
 
  
 
