@@ -73,10 +73,14 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - https://developer.android.com/training/constraint-layout
   - https://www.youtube.com/watch?v=hqEfshM5Vfw&list=PLWz5rJ2EKKc8oNHPWtq4_FUzJtzqFNb7e
 
-### AlertDialog & Toasts (in Planung)
-- AlertDialog
+### AlertDialog, Toasts und Picker (fertig)
+- Erklärvideo unter https://youtu.be/lMHtftFWKz0
 - Toasts
+  - https://developer.android.com/guide/topics/ui/notifiers/toasts
+- AlertDialog
+  - https://developer.android.com/guide/topics/ui/dialogs#AlertDialog
 - Picker
+  - https://developer.android.com/guide/topics/ui/controls/pickers
 
 ### RecyclerView (in Planung)
 

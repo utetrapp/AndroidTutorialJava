@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DemoDialogs</string>
+    <string name="date_format_dmy">dd.MM.yy</string>
+</resources>
