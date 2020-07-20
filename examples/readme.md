@@ -82,7 +82,16 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 - Picker
   - https://developer.android.com/guide/topics/ui/controls/pickers
 
-### RecyclerView (in Planung)
+### RecyclerView (fertig)
+- Erklärvideo unter https://youtu.be/EWZeeIdWpJY
+- Links
+  - Code
+    - https://developer.android.com/guide/topics/ui/layout/recyclerview 
+    - https://guides.codepath.com/android/using-the-recyclerview
+  - Visualisierung/Erläuterung
+    - https://www.youtube.com/watch?v=-VPM6ICgCk8
+	- https://android.jlelse.eu/understanding-recyclerview-components-part-2-1fd43001a98f
+
 
 ### SharedPreferences (in Planung)
 
