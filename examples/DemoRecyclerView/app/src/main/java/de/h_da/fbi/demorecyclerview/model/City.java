@@ -1,4 +1,4 @@
-package de.h_da.fbi.demorecyclerview;
+package de.h_da.fbi.demorecyclerview.model;
 
 public class City {
     private String imageUrl;

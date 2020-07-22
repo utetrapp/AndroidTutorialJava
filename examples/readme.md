@@ -83,7 +83,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - https://developer.android.com/guide/topics/ui/controls/pickers
 
 ### RecyclerView (fertig)
-- Erklärvideo unter https://youtu.be/EWZeeIdWpJY
+- Erklärvideo unter https://youtu.be/krHARBTzVWw
 - Links
   - Code
     - https://developer.android.com/guide/topics/ui/layout/recyclerview 

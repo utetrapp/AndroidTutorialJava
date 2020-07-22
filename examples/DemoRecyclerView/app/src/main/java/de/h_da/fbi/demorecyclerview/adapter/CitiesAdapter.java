@@ -1,4 +1,4 @@
-package de.h_da.fbi.demorecyclerview;
+package de.h_da.fbi.demorecyclerview.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,7 +13,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesViewHolder> {
+import de.h_da.fbi.demorecyclerview.R;
+import de.h_da.fbi.demorecyclerview.model.City;
+
+public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesViewHolder>{
+
     private List<City> cities;
     private Context context;
 
@@ -21,6 +25,21 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
     public CitiesAdapter(Context context, List<City> cities) {
         this.context = context;
         this.cities = cities;
+    }
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(CitiesViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        City city = cities.get(position);
+        holder.textViewName.setText(city.getName());
+        Glide.with(context).load(city.getImageUrl()).into(holder.imageView);
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return cities.size();
     }
 
     // Provide a reference to the views for each data item
@@ -47,23 +66,4 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
         CitiesViewHolder vh = new CitiesViewHolder(view);
         return vh;
     }
-
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(CitiesViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        City city = cities.get(position);
-        holder.textViewName.setText(city.getName());
-        Glide.with(context).load(city.getImageUrl()).into(holder.imageView);
-    }
-
-    // Return the size of your dataset (invoked by the layout manager)
-    @Override
-    public int getItemCount() {
-        return cities.size();
-    }
-
 }
-
-

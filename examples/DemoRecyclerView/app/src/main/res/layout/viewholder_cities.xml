@@ -28,3 +28,4 @@
             style="@style/TextAppearance.MaterialComponents.Caption"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+
