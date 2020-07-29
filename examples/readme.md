@@ -93,13 +93,35 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 	- https://android.jlelse.eu/understanding-recyclerview-components-part-2-1fd43001a98f
 
 
-### SharedPreferences (in Planung)
+### AppData (in Planung)
+- https://developer.android.com/guide/topics/data
+- https://developer.android.com/training/data-storage/use-cases
+- Beispiele von Android Developer in Kotlin (Kotlin to Java: Tools >> Kotlin>> Decompile Kotlin to Java)
+  - https://developer.android.com/guide/topics/providers/document-provider
+- File
+  - Internal Storage (nur diese App hat Zugriff, auch nicht sichtbar für Dateimanager)
+  - "External" Storage (Achtung ab Q/Android 10 "scoped access", vgl. https://www.youtube.com/watch?v=UnJ3amzJM94 ; gedacht für größere Dateien)
+  - Shared Storage (Daten auch für andere Apps sichtbar/verfügbar, vorgesehen für Docs und Media)
+  - https://developer.android.com/training/data-storage/app-specific
+- SharedPreferences (Key-Value)
+  - https://developer.android.com/training/data-storage/shared-preferences	
+  - Settings: https://developer.android.com/guide/topics/ui/settings
+- Database (vgl. andere Folge)
+- ContentProvider (Zugriff von anderen Apps)
+  - https://developer.android.com/guide/topics/providers/content-providers
+- Cloud
+
+### Navigation Component
+- https://www.zoftino.com/navigation-in-android-app-using-navigation-component#navigation-component-bottomnavigationview-example
+- https://developer.android.com/guide/navigation/navigation-migrate
+- https://www.androidtutorialonline.com/android-navigation-component/
 
 ### NavigationDrawer (in Planung)
 
 ### BottomNavigation (in Planung)
 
 ### OptionMenu (in Planung)
+- onCreateOptionsMenu
 
 ## Extras
 
