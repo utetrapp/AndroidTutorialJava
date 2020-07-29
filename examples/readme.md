@@ -60,6 +60,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - https://material.io/develop/android/docs/getting-started
   - Farben: https://material.io/design/color/the-color-system.html#color-theme-creation
   - labs: https://codelabs.developers.google.com/?cat=Design
+  - Icons https://github.com/google/material-design-icons
 
 ### LinearLayout & ConstraintLayout (fertig)
 - Erklärvideo unter https://youtu.be/1U5p69lQ-Ek
@@ -93,14 +94,16 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 	- https://android.jlelse.eu/understanding-recyclerview-components-part-2-1fd43001a98f
 
 
-### AppData (in Planung)
-- https://developer.android.com/guide/topics/data
-- https://developer.android.com/training/data-storage/use-cases
-- Beispiele von Android Developer in Kotlin (Kotlin to Java: Tools >> Kotlin>> Decompile Kotlin to Java)
-  - https://developer.android.com/guide/topics/providers/document-provider
+### AppData (fertig) mit Fokus auf SharedPreferences und SettingsActivity
+- Erklärvideo unter https://youtu.be/hxuVaWnF4-g
+- AppData & Files
+  - Überblick: https://developer.android.com/guide/topics/data
+  - Use Cases & best practices: https://developer.android.com/training/data-storage/use-cases
+  - Beispiele von Android Developer in Kotlin (Kotlin to Java: Tools >> Kotlin>> Decompile Kotlin to Java)
+    - https://developer.android.com/guide/topics/providers/document-provider
 - File
-  - Internal Storage (nur diese App hat Zugriff, auch nicht sichtbar für Dateimanager)
-  - "External" Storage (Achtung ab Q/Android 10 "scoped access", vgl. https://www.youtube.com/watch?v=UnJ3amzJM94 ; gedacht für größere Dateien)
+  - Internal Storage (nur diese App hat Zugriff, i.A. auch nicht sichtbar für Dateimanager)
+  - "External" Storage (Achtung ab Q/Android 10 "scoped access", vgl. https://www.youtube.com/watch?v=UnJ3amzJM94 -- gedacht für größere Dateien)
   - Shared Storage (Daten auch für andere Apps sichtbar/verfügbar, vorgesehen für Docs und Media)
   - https://developer.android.com/training/data-storage/app-specific
 - SharedPreferences (Key-Value)
