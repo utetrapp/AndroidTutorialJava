@@ -138,7 +138,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
     - Layout: activity_main (NavigationView dazu), nav_header_main
     - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): activity_main_drawer
     - Values: dimens, styles, strings
-    - Drawable: Icons runterladen z.B. von https://github.com/google/material-design-icons  dort Unterverzeichnis drawable-anydpi-v21 wählen
+    - Drawable: Icons entsprechend hinzufügen
   - ActivityMain:
     - implements NavigationView.OnNavigationItemSelectedListener
     - onCreate: Toggle, Toolbar etc 
@@ -147,7 +147,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
     - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): main_options_menu
     - Values: strings
-    - Drawable: Icons runterladen z.B. von https://github.com/google/material-design-icons  dort Unterverzeichnis drawable-anydpi-v21 wählen
+    - Drawable: Icons entsprechend hinzufügen -- Farben beachten
   - In zugehöriger Activity
     - onCreateOptionsMenu überschreiben und dort Menu mit Inflater:	getMenuInflater().inflate(R.menu.main_options_menu, menu);
 	
