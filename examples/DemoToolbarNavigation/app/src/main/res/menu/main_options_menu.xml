@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- damit immer Icon und Beschriftung sichtbar sind:  <item ... app:showAsAction="always"><menu> drumherum -->
+    <item
+        android:id="@+id/action_nav_a"
+        android:icon="@drawable/ic_activitya_inwhite"
+        android:title="@string/menu_activitya"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_nav_b"
+        android:icon="@drawable/ic_ic_activityb_inwhite"
+        android:title="@string/menu_activitya"
+        app:showAsAction="never" />
+</menu>

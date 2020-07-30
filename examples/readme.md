@@ -94,7 +94,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 	- https://android.jlelse.eu/understanding-recyclerview-components-part-2-1fd43001a98f
 
 
-### AppData (fertig) mit Fokus auf SharedPreferences und SettingsActivity
+### AppData mit Fokus auf SharedPreferences und SettingsActivity (fertig)
 - Erklärvideo unter https://youtu.be/hxuVaWnF4-g
 - AppData & Files
   - Überblick: https://developer.android.com/guide/topics/data
@@ -114,18 +114,43 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - https://developer.android.com/guide/topics/providers/content-providers
 - Cloud
 
-### Navigation Component
-- https://www.zoftino.com/navigation-in-android-app-using-navigation-component#navigation-component-bottomnavigationview-example
-- https://developer.android.com/guide/navigation/navigation-migrate
-- https://www.androidtutorialonline.com/android-navigation-component/
-
-### NavigationDrawer (in Planung)
-
-### BottomNavigation (in Planung)
-
-### OptionMenu (in Planung)
-- onCreateOptionsMenu
-
+### BottomNavigation, NavigationDrawer, OptionsMenu (fertig)
+- Erklärvideo unter https://youtu.be/Qe_QQAkJGRs
+- BottomNavigationView
+  - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
+    - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): bottom_nav_menu
+    - Values: dimens, styles, strings
+    - Drawable: Icons runterladen z.B. von https://github.com/google/material-design-icons  dort Unterverzeichnis drawable-anydpi-v21 wählen – Farben mit primary … anpassen
+  - MainActivity bzw. alle Activities mit BottomNavigation (eigentlich hier besser Fragments)
+    - Im Layout der Activtiy BottomNavigationView einfügen
+    - Implements BottomNavigationView.OnNavigationItemSelectedListener
+    - In onCreate Listener hinzufügen
+- ToolBar
+  - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
+    - Layout: activity_main, app_bar_main, content_main
+    - Values: dimens, styles, strings
+  - Manifest: style für MainActivity setzen android:theme="@style/AppTheme.NoActionBar"
+  - ActivityMain:
+    - onCreate: Toolbar toolbar = findViewById(R.id.toolbar); setSupportActionBar(toolbar); 
+- NavigationDrawer
+  - braucht wie im Punkt davor beschrieben eine Toolbar
+  - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
+    - Layout: activity_main (NavigationView dazu), nav_header_main
+    - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): activity_main_drawer
+    - Values: dimens, styles, strings
+    - Drawable: Icons runterladen z.B. von https://github.com/google/material-design-icons  dort Unterverzeichnis drawable-anydpi-v21 wählen
+  - ActivityMain:
+    - implements NavigationView.OnNavigationItemSelectedListener
+    - onCreate: Toggle, Toolbar etc 
+- OptionsMenu
+  - braucht wie im Punkt davor beschrieben eine Toolbar
+  - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
+    - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): main_options_menu
+    - Values: strings
+    - Drawable: Icons runterladen z.B. von https://github.com/google/material-design-icons  dort Unterverzeichnis drawable-anydpi-v21 wählen
+  - In zugehöriger Activity
+    - onCreateOptionsMenu überschreiben und dort Menu mit Inflater:	getMenuInflater().inflate(R.menu.main_options_menu, menu);
+	
 ## Extras
 
 ### Room (DB) (in Planung)
