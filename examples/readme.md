@@ -31,6 +31,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### Resources, Styling und Mehrsprachigkeit (fertig)
 - Erklärvideo unter https://youtu.be/bfwhN9O9i6Q
+- - Unterverzeichnis von examples: DemoResources
 - Resourcen
   - https://developer.android.com/guide/topics/resources/providing-resources.html
 - Mehrsprachigkeit
@@ -64,6 +65,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### LinearLayout & ConstraintLayout (fertig)
 - Erklärvideo unter https://youtu.be/1U5p69lQ-Ek
+- - Unterverzeichnis von examples: LayoutDemos
 - https://dribbble.com/shots/popular/mobile
 - Layout (ViewGroup)
   - https://developer.android.com/guide/topics/ui/declaring-layout 
@@ -76,6 +78,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### AlertDialog, Toasts und Picker (fertig)
 - Erklärvideo unter https://youtu.be/lMHtftFWKz0
+- Unterverzeichnis von examples: DemoDialogs
 - Toasts
   - https://developer.android.com/guide/topics/ui/notifiers/toasts
 - AlertDialog
@@ -85,6 +88,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### RecyclerView (fertig)
 - Erklärvideo unter https://youtu.be/krHARBTzVWw
+- Unterverzeichnis von examples: DemoRecyclerView
 - Links
   - Code
     - https://developer.android.com/guide/topics/ui/layout/recyclerview 
@@ -96,6 +100,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### AppData mit Fokus auf SharedPreferences und SettingsActivity (fertig)
 - Erklärvideo unter https://youtu.be/hxuVaWnF4-g
+- Unterverzeichnis von examples: DemoSettings
 - AppData & Files
   - Überblick: https://developer.android.com/guide/topics/data
   - Use Cases & best practices: https://developer.android.com/training/data-storage/use-cases
@@ -116,7 +121,8 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### BottomNavigation, NavigationDrawer, OptionsMenu (fertig)
 - Erklärvideo unter https://youtu.be/Qe_QQAkJGRs
-- BottomNavigationView
+- Unterverzeichnis von examples: DemoBottomNavigation und DemoToolbarNavigation
+- BottomNavigationView in DemoBottomNavigation
   - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
     - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): bottom_nav_menu
     - Values: dimens, styles, strings
@@ -132,7 +138,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - Manifest: style für MainActivity setzen android:theme="@style/AppTheme.NoActionBar"
   - ActivityMain:
     - onCreate: Toolbar toolbar = findViewById(R.id.toolbar); setSupportActionBar(toolbar); 
-- NavigationDrawer
+- NavigationDrawer in DemoToolbarNavigation
   - braucht wie im Punkt davor beschrieben eine Toolbar
   - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
     - Layout: activity_main (NavigationView dazu), nav_header_main
@@ -142,7 +148,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - ActivityMain:
     - implements NavigationView.OnNavigationItemSelectedListener
     - onCreate: Toggle, Toolbar etc 
-- OptionsMenu
+- OptionsMenu in DemoToolbarNavigation
   - braucht wie im Punkt davor beschrieben eine Toolbar
   - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
     - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): main_options_menu
