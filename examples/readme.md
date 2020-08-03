@@ -13,6 +13,10 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 - Implementierung eines EventHandlers unter Verwendung der Lambda-Notation
 - setError, findViewById
 - Java-Grundlagen inkl. Integer.parseInt, String.format, isEmpty
+- weiterführende Links
+  - https://developer.android.com/guide/components/fundamentals
+  - https://developer.android.com/training/basics/firstapp
+  - https://developer.android.com/guide/components/activities/intro-activities?hl=en
 
 ### Kommunikation zwischen Aktivitäten (fertig)
 - Erklärvideo unter https://youtu.be/IjZ2TaGJV8U
@@ -111,6 +115,8 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - "External" Storage (Achtung ab Q/Android 10 "scoped access", vgl. https://www.youtube.com/watch?v=UnJ3amzJM94 -- gedacht für größere Dateien)
   - Shared Storage (Daten auch für andere Apps sichtbar/verfügbar, vorgesehen für Docs und Media)
   - https://developer.android.com/training/data-storage/app-specific
+  - Überblick, was wann gelöscht wird: https://developer.android.com/training/data-storage?hl=en
+  - JavaIO allgemein: http://tutorials.jenkov.com/java-io/overview.html
 - SharedPreferences (Key-Value)
   - https://developer.android.com/training/data-storage/shared-preferences	
   - Settings: https://developer.android.com/guide/topics/ui/settings
@@ -120,18 +126,18 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 - Cloud
 
 ### BottomNavigation, NavigationDrawer, OptionsMenu (fertig)
-- Erklärvideo unter https://youtu.be/Qe_QQAkJGRs
+- Erklärvideo unter https://youtu.be/s_PHHvNRJTU
 - Unterverzeichnis von examples: DemoBottomNavigation und DemoToolbarNavigation
 - BottomNavigationView in DemoBottomNavigation
   - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
     - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): bottom_nav_menu
     - Values: dimens, styles, strings
-    - Drawable: Icons runterladen z.B. von https://github.com/google/material-design-icons  dort Unterverzeichnis drawable-anydpi-v21 wählen – Farben mit primary … anpassen
+    - Drawable: Icons runterladen z.B. von https://github.com/google/material-design-icons  dort Unterverzeichnis drawable-anydpi-v21 wählen
   - MainActivity bzw. alle Activities mit BottomNavigation (eigentlich hier besser Fragments)
     - Im Layout der Activtiy BottomNavigationView einfügen
     - Implements BottomNavigationView.OnNavigationItemSelectedListener
     - In onCreate Listener hinzufügen
-- ToolBar
+- ToolBar (Teil von DemoToolbarNavigation)
   - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
     - Layout: activity_main, app_bar_main, content_main
     - Values: dimens, styles, strings
@@ -148,32 +154,96 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - ActivityMain:
     - implements NavigationView.OnNavigationItemSelectedListener
     - onCreate: Toggle, Toolbar etc 
-- OptionsMenu in DemoToolbarNavigation
+- OptionsMenu (enthalten in DemoToolbarNavigation)
   - braucht wie im Punkt davor beschrieben eine Toolbar
   - Folgende Ressourcen wie im Beispielprojekt hinzufügen/ergänzen:
-    - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): main_options_menu
+    - Menu (ggf. Rechtsklick auf res und new android resource directory auswählen, hier menu anlegen): main_options_menu -- im Menu app:iconTint passend wählen
     - Values: strings
-    - Drawable: Icons entsprechend hinzufügen -- Farben beachten
+    - Drawable: Icons entsprechend hinzufügen 
   - In zugehöriger Activity
-    - onCreateOptionsMenu überschreiben und dort Menu mit Inflater:	getMenuInflater().inflate(R.menu.main_options_menu, menu);
+    - onCreateOptionsMenu überschreiben und dort Menu mit Inflater: getMenuInflater().inflate(R.menu.main_options_menu, menu);
+
+### async (fertig)
+- Erklärvideo unter
+- Thread und WorkManager sind im Projekt examples/DemoRest enthalten
+- Video zu "dropped frames": https://www.youtube.com/watch?v=qk5F6Bxqhr4
+- Entscheidungshilfen
+  - https://android-developers.googleblog.com/2018/10/modern-background-execution-in-android.html
+  - https://developer.android.com/guide/background/
+- Threads
+  - https://developer.android.com/guide/components/processes-and-threads 
+  - Zugriff von anderen Thread auf UI-Thread mit Activity.runOnUiThread(Runnable), View.post(Runnable), View.postDelayed(Runnable, long)
+  - Beispiel
+  ```
+  public void onClick(View v) {
+        new Thread(() -> {
+            // a potentially time consuming task
+            final Bitmap bitmap = longTask("image.png");
+            imageView.post(() -> imageView.setImageBitmap(bitmap));
+        }).start();
+    }
+  ```
+- WorkManager
+  - Video: https://www.youtube.com/watch?v=pe_yqM16hPQ
+  - Doku: https://developer.android.com/topic/libraries/architecture/workmanager
+  - Lab: https://codelabs.developers.google.com/codelabs/android-workmanager-java/#0
+  - Prinzip: 
+    - Das WAS definieren
+      - extend Worker
+      - public Result doWork()  success/failure/retry
+      - z.B. eine Klasse UpdateWorker extend Worker
+    - Das WANN definieren
+      - Bedingungen (constraints) https://developer.android.com/topic/libraries/architecture/workmanager/how-to/define-work#work-constraints
+      - Bei retry: wie häufig und wann wiederholen? https://developer.android.com/topic/libraries/architecture/workmanager/how-to/define-work#retry_and_backoff_policy
+      - Einmalig
+	    - https://developer.android.com/topic/libraries/architecture/workmanager/how-to/define-work#schedule_one-time_work
+	    - OneTimeWorkRequest updateRequest =  new OneTimeWorkRequest.Builder(UpdateWorker.class).build();
+      - oder periodisch https://developer.android.com/topic/libraries/architecture/workmanager/how-to/define-work#schedule_periodic_work
+      - Vor .build optional dazu: setInputData(...).setConstraints(...).setBackoffCriteria(...).build()
+    - Zu Warteschlange hinzufügen
+      - Als Kette: beginWith(…).then(…).then(…).enqueue()
+      - einfach: WorkManager.getInstance(application).enqueue(updateRequest);
+- ergänzende Bibliothek RxJava: https://github.com/ReactiveX/RxJava
+- ab in die Tiefe: https://www.youtube.com/watch?v=UPq1LDxL5_w&feature=youtu.be
+Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden/aufgreifen.
+
+### REST (in Planung)
+- REST
+  - https://www.programmableweb.com/api-university
+- JSON
+  - https://www.json.org  
+  - Empfehlung: Verwendung von GSON https://github.com/google/gson
+- Netzwerkverbindung mit Volley
+  - https://developer.android.com/training/volley/index.html
+- Manifest: internet permission
+
+
+### barrierefrei
+- https://developer.android.com/guide/topics/ui/accessibility
+
+### roundup
+- package by feature: https://www.techyourchance.com/popular-package-structures/
 	
 ## Extras
 
 ### Room (DB) (in Planung)
+- Lab https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#2
 
 ### Firebase (in Planung)
-
-### REST (in Planung)
+- Lab https://codelabs.developers.google.com/codelabs/firebase-android/index.html?index=..%2F..index#0
 
 ### Bibliotheken (Onboarding, Bilder, Charts, …) (in Planung)
 
 ## Ausblick
-Architektur, Fragments, ViewModel, Navigation Component
+Architektur, Fragments, ViewModel, Navigation Component, View Binding (one way) und Data Binding (two way), DependencyInjection
+- umfangreiche DemoApp mit allen best practices https://github.com/android/sunflower
 - https://developer.android.com/jetpack/guide
 - https://developer.android.com/guide/components/fragments
 - https://developer.android.com/topic/libraries/architecture/viewmodel
 - https://developer.android.com/guide/navigation
 - https://developer.android.com/guide/navigation/navigation-migrate
-
+- https://www.techyourchance.com/
+- Activities vs. Fragments: https://www.techyourchance.com/navigation-between-screens-android/ und https://github.com/xxv/android-lifecycle und https://www.techyourchance.com/android-fragment-lifecycle/ (Zitat: "Fragments are a mess. Their lifecycle is rocket science. The only thing worse than Fragments is their official documentation.")
+- guides: https://developer.android.com/guide
  
 
