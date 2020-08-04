@@ -186,7 +186,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
     - onCreateOptionsMenu überschreiben und dort Menu mit Inflater: getMenuInflater().inflate(R.menu.main_options_menu, menu);
 
 ### async (fertig)
-- Erklärvideo unter
+- Erklärvideo unter https://youtu.be/tnPpHWdbW04
 - Thread und WorkManager sind im Projekt examples/DemoRest enthalten
 - Video zu "dropped frames": https://www.youtube.com/watch?v=qk5F6Bxqhr4
 - Entscheidungshilfen
@@ -229,7 +229,10 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 - ab in die Tiefe: https://www.youtube.com/watch?v=UPq1LDxL5_w&feature=youtu.be
 Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden/aufgreifen.
 
-### REST (in Planung)
+### REST (fertig)
+- Erklärvideo unter https://youtu.be/lW9o5e3pk2U
+- Zugriff auf lokalen Webdienst im Emulator nicht über localhost, sondern nur über entsprechende IP 
+- Unterverzeichnis von examples: DemoRest
 - REST
   - https://www.programmableweb.com/api-university
 - JSON
@@ -238,6 +241,7 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
 - Netzwerkverbindung mit Volley
   - https://developer.android.com/training/volley/index.html
 - Manifest: internet permission
+- gradle: Abhängigkeiten
 
 ### Room (DB) (in Planung)
 - Lab https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#2
