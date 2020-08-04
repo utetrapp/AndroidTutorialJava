@@ -67,6 +67,28 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - labs: https://codelabs.developers.google.com/?cat=Design
   - Icons https://github.com/google/material-design-icons
 
+### Layout Herangehensweise und Barrierefreiheit (fertig)
+- Erklärvideo unter https://youtu.be/_YuaVZQeD_o
+- Barrierefreiheit
+  - https://developer.android.com/guide/topics/ui/accessibility
+  - Lab: https://codelabs.developers.google.com/codelabs/basic-android-accessibility/#0
+  - Scanner https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor
+  - konkrete Maßnahmen in Android, z.B. 
+    - EditText: android:hint
+    - color contrast, mindestens 4.5, Check mit https://contrast-ratio.com
+    - Mindesttextgröße: 12 sp
+    - Hit-size mindestens 48dp (minWidth, minHeight) 
+    - Für imageview,button u.ä. android:contentDescription bzw. android:importantForAccessibility="no"
+- Herangehensweise
+  - Flucht- und Symmetrielinien identifizieren / definieren
+  - Anzahl der Fluchtlinien klein halten, insbesondere vertikale
+  - "gutes Design braucht keine (gezeichneten) Linien" -- Freiräume gezielt einsetzen
+- Layout-Editor: https://developer.android.com/studio/write/layout-editor
+- Motioin-Editor: https://developer.android.com/studio/write/motion-editor
+- Gutes Buch mit vielen Beispielen: Pixel Perfect Precision Handbook
+  - Artikel dazu mit Link zum PDF des Buchs https://www.ustwo.com/blog/the-pixel-perfect-precision-handbook
+- Guter Artikel mit vielen Grundlagen https://www.smashingmagazine.com/2018/02/comprehensive-guide-to-mobile-app-design/
+
 ### LinearLayout & ConstraintLayout (fertig)
 - Erklärvideo unter https://youtu.be/1U5p69lQ-Ek
 - - Unterverzeichnis von examples: LayoutDemos
@@ -217,15 +239,6 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
   - https://developer.android.com/training/volley/index.html
 - Manifest: internet permission
 
-
-### barrierefrei
-- https://developer.android.com/guide/topics/ui/accessibility
-
-### roundup
-- package by feature: https://www.techyourchance.com/popular-package-structures/
-	
-## Extras
-
 ### Room (DB) (in Planung)
 - Lab https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#2
 
@@ -234,8 +247,9 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
 
 ### Bibliotheken (Onboarding, Bilder, Charts, …) (in Planung)
 
-## Ausblick
-Architektur, Fragments, ViewModel, Navigation Component, View Binding (one way) und Data Binding (two way), DependencyInjection
+## Zusammenfassung, Ergänzungen und Ausblick
+- package by feature: https://www.techyourchance.com/popular-package-structures/
+- Architektur, Fragments, ViewModel, Navigation Component, View Binding (one way) und Data Binding (two way), DependencyInjection
 - umfangreiche DemoApp mit allen best practices https://github.com/android/sunflower
 - https://developer.android.com/jetpack/guide
 - https://developer.android.com/guide/components/fragments
