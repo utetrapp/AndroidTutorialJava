@@ -24,11 +24,12 @@ import com.bumptech.glide.request.transition.Transition;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 import de.h_da.fbi.demoroom.model.AppDatabase;
 import de.h_da.fbi.demoroom.model.City;
-import de.h_da.fbi.demoroom.model.DatabaseClient;
 
 public class CityDetailsActivity extends AppCompatActivity {
     private City city = null;
@@ -61,7 +62,7 @@ public class CityDetailsActivity extends AppCompatActivity {
 
 
         Button btnDelete = findViewById(R.id.btnDelete);
-        btnDelete.setVisibility(View.INVISIBLE);
+        btnDelete.setVisibility(View.GONE);
         Button btnUpdate = findViewById(R.id.btnSave);
         btnUpdate.setOnClickListener(view -> saveItem());
         spinner = findViewById(R.id.spinnerContinents);
@@ -92,8 +93,12 @@ public class CityDetailsActivity extends AppCompatActivity {
 
     private void deleteItem() {
         if (city != null) {
-            db.cityDao().delete(city);
-            Toast.makeText(this, "gelöscht", Toast.LENGTH_LONG).show();
+            AppDatabase.databaseExecutor.execute(() -> {
+                db.cityDao().delete(city);
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "gelöscht", Toast.LENGTH_LONG).show();
+                });
+            });
         }
         finish();
     }
@@ -105,8 +110,9 @@ public class CityDetailsActivity extends AppCompatActivity {
         city.setName(editTitle.getText().toString().trim());
         city.setAttractions(editDescription.getText().toString().trim());
         try {
-            city.setInhabitants(Integer.parseInt(editInhabitants.getText().toString()));
-        } catch (NumberFormatException ex) {
+            Number number = NumberFormat.getInstance().parse(editInhabitants.getText().toString());
+            city.setInhabitants(number.intValue());
+        } catch (NumberFormatException | ParseException ex) {
             editInhabitants.setError("leider keine ganze Zahl");
             return;
         }
@@ -114,9 +120,14 @@ public class CityDetailsActivity extends AppCompatActivity {
         if (imageBitmap != null)
             city.setImagePath(copyImageToInternalStorage());
         if (city.getUid() > 0)
-            db.cityDao().update(city);
+            AppDatabase.databaseExecutor.execute(() -> {
+                db.cityDao().update(city);
+            });
         else
-            db.cityDao().insert(city);
+            AppDatabase.databaseExecutor.execute(() -> {
+                db.cityDao().insert(city);
+            });
+
         finish();
     }
 

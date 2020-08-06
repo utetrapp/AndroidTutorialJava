@@ -8,8 +8,6 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import io.reactivex.Maybe;
-
 @Dao
 public interface CityDao {
 
@@ -20,11 +18,11 @@ public interface CityDao {
     City getCityById(long id);
 
     @Insert
-    long insert(City city);
+    void insert(City city);
 
     @Delete
     void delete(City city);
 
     @Update
-    Maybe<Integer> update(City city);
+    void update(City city);
 }

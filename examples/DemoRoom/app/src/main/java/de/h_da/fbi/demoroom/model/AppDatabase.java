@@ -19,7 +19,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor =
+    public static final ExecutorService databaseExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
@@ -33,10 +33,14 @@ public abstract class AppDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
+                    //for quick and dirty development use
+//                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+//                            AppDatabase.class, DATABASE_NAME)
+//                            .allowMainThreadQueries()
+//                            .build();
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, DATABASE_NAME)
                             .addMigrations(MIGRATION_1_2)
-                            .allowMainThreadQueries()
                             .build();
                 }
             }

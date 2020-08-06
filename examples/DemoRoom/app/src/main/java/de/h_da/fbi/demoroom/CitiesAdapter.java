@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 
 import de.h_da.fbi.demoroom.model.City;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 //@see
@@ -39,7 +40,7 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
         // - replace the contents of the view with that element
         City city = cities.get(position);
         holder.textViewTitle.setText(String.format("%s (%s)", city.getName(), city.getContinentAsEnumField().toString()));
-        holder.textViewInhabitants.setText(String.format("%d Einwohner*innen", city.getInhabitants()));
+        holder.textViewInhabitants.setText(NumberFormat.getInstance().format(city.getInhabitants()) + " Einwohner*innen");
         holder.textViewDescription.setText(city.getAttractions());
         Glide.with(context).load(city.getImagePath()).fitCenter().into(holder.imageViewCity);
     }
@@ -50,11 +51,6 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
         if (cities != null)
             return cities.size();
         return 0;
-    }
-
-    void setCities(List<City> cities){
-        this.cities = cities;
-        notifyDataSetChanged();
     }
 
     class CitiesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

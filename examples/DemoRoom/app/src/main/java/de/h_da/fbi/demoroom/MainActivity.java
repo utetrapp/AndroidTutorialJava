@@ -1,10 +1,5 @@
 package de.h_da.fbi.demoroom;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,20 +7,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import de.h_da.fbi.demoroom.model.AppDatabase;
-import de.h_da.fbi.demoroom.model.City;
-import de.h_da.fbi.demoroom.model.DatabaseClient;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.h_da.fbi.demoroom.model.AppDatabase;
+import de.h_da.fbi.demoroom.model.City;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener { //click auf Spinner
 
     private List<City> allCities;
     private RecyclerView recyclerView;
     private Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +48,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
     }
 
-    private void fillCities(final City.Continent continent){
+    private void fillCities(final City.Continent continent) {
         List<City> filteredCities;
         if (continent == City.Continent.Any)
             filteredCities = allCities;
-        else{
+        else {
             filteredCities = new ArrayList<>();
             //diese Syntax braucht api 24, also Android 7, alternativ einfach
             //for (City city : allCities)
@@ -64,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         recyclerView.setAdapter(new CitiesAdapter(this, filteredCities));
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         fillCities(City.Continent.values()[position]);
@@ -75,11 +75,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         spinner.setSelected(false);
-        allCities = AppDatabase.getDatabase(getApplication()).cityDao().getAll();
-        fillCities(City.Continent.Any);
+        AppDatabase.databaseExecutor.execute(() -> {
+            List<City> cities = AppDatabase.getDatabase(getApplication()).cityDao().getAll();
+            runOnUiThread(() -> {
+                allCities = cities;
+                fillCities(City.Continent.Any);
+            });
+        });
+
     }
 
 }

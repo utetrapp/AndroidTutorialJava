@@ -75,12 +75,14 @@ public class City implements Serializable {
         return Continent.values()[continent];
     }
 
-    public int getContinent(){
+    public int getContinent() {
         return continent;
     }
-    public void setContinent(int continent){
+
+    public void setContinent(int continent) {
         this.continent = continent;
     }
+
     public void setContinentAsEnumField(Continent continent) {
         this.continent = continent.ordinal();
     }
