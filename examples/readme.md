@@ -243,11 +243,35 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
 - Manifest: internet permission
 - gradle: Abhängigkeiten
 
-### Room (DB) (in Planung)
+### Room (DB) (fertig)
+- Erklärvideo unter https://youtu.be/TQ_-yj-yeAw
+- Unterverzeichnis von examples: DemoRoom
+  - Bildauswahl
+  - Persistenz der ausgewählten Bilder durch Kopieren in den internal storage
+  - Spinner
+  - RecyclerView mit Glide
+  - Room mit einer Tabelle und Migration 
+  - relevante Klassen und Methoden: RoomDatabase, ExecutorService, allowMainThreadQueries, androidx.room.Dao, Entity, insert, update, delete, Intent.ACTION_OPEN_DOCUMENT, CustomTarget, Glide, View.OnClickListener, runOnUiThread, NumberFormat
+- https://developer.android.com/training/data-storage/room
 - Lab https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#2
+- Für Date und anderen Nicht-Sql-Datentypen verwenden Sie Converter https://developer.android.com/training/data-storage/room/referencing-data
+
 
 ### Firebase (in Planung)
 - Lab https://codelabs.developers.google.com/codelabs/firebase-android/index.html?index=..%2F..index#0
+- Die Demo-App erlaubt es, allen Benutzern über eine Art schwarzes Brett miteinander zu kommunizieren -- ohne Anmeldung o.ä. -- vor dem Starten der App müssen Sie Ihre Firebasedaten eingeben (vgl. Video).
+- Checkliste
+  - Melden Sie sich bei Firebase https://console.firebase.google.com/ mit einem Google-Account an und erstellen Sie ein neues Projekt (kann auch ohne Analytics sein).
+  - Verbinden Sie Ihr Firebase-Projekt mit Android -- beachten Sie, dass die Namespaces Ihrer App mit dem dort angegebenen Namespace übereinstimmen.
+  - Folgen Sie der weiteren Anleitung.
+  - in der Firebase-Console
+    - Sie haben die Wahl zwischen Cloud Firestore und Realtime Database. Google empfiehlt für neue Projekte Firestore. Wählen Sie also links Database und dann create database. Wählen Sie Produktionsmodus und eur3 als Region.
+    - Wählen Sie Authentication links und Sign-In method rechts und aktivieren Sie anonymous (produktiv E-Mail...)
+    - Wählen Sie Database links und Rules rechts und passen Sie die Regel wie folgt an: allow read, write: if request.auth != null;
+    - Eine gute Struktur für NoSQL-Datenbank ist Stoff für eine eigene Vorlesung und somit nicht Teil dieser Veranstaltung, Optimierung ist also nicht mein Ziel. Lesen Sie folgenden Beitrag zur Strukturierung von Daten einer NoSQL-Datenbank: https://firebase.google.com/docs/firestore/data-model
+    - Unterstützte Datentypen: https://firebase.google.com/docs/firestore/manage-data/data-types
+  - Sie können ähnlich wie bei Room einfache Datenklassen erstellen und mit diesen arbeiten.
+  - In der Firebase-Console können Sie unter Database sich die Daten ansehen.
 
 ### Bibliotheken (Onboarding, Bilder, Charts, …) (in Planung)
 
