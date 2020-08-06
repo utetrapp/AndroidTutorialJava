@@ -3,7 +3,6 @@ package de.h_da.fbi.demoroom;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +29,8 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
 
     @Override
     public CitiesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.viewholder_city, parent, false);
-        return new CitiesViewHolder(view);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.viewholder_city, parent, false);
+        return new CitiesViewHolder(itemView);
     }
 
     @Override
@@ -42,13 +41,20 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
         holder.textViewTitle.setText(String.format("%s (%s)", city.getName(), city.getContinentAsEnumField().toString()));
         holder.textViewInhabitants.setText(String.format("%d Einwohner*innen", city.getInhabitants()));
         holder.textViewDescription.setText(city.getAttractions());
-        Glide.with(context).load(city.getImageUri()).fitCenter().into(holder.imageViewCity);
+        Glide.with(context).load(city.getImagePath()).fitCenter().into(holder.imageViewCity);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return cities.size();
+        if (cities != null)
+            return cities.size();
+        return 0;
+    }
+
+    void setCities(List<City> cities){
+        this.cities = cities;
+        notifyDataSetChanged();
     }
 
     class CitiesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

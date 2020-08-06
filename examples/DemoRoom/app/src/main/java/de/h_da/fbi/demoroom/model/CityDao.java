@@ -1,6 +1,5 @@
 package de.h_da.fbi.demoroom.model;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -8,6 +7,8 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
+
+import io.reactivex.Maybe;
 
 @Dao
 public interface CityDao {
@@ -25,5 +26,5 @@ public interface CityDao {
     void delete(City city);
 
     @Update
-    void update(City city);
+    Maybe<Integer> update(City city);
 }

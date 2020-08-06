@@ -1,6 +1,9 @@
 package de.h_da.fbi.demoroom;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +14,17 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 
 import de.h_da.fbi.demoroom.model.AppDatabase;
 import de.h_da.fbi.demoroom.model.City;
@@ -26,8 +37,9 @@ public class CityDetailsActivity extends AppCompatActivity {
     private ImageView imageViewCity;
     private Spinner spinner;
     private static final int REQUEST_PICK_IMAGE = 42;
-    private String imageUri = "";
-    private int takeFlags;
+    private String imagePath = "";
+    private Bitmap imageBitmap = null;
+
     //handle click on  back arrow
     @Override
     public boolean onSupportNavigateUp() {
@@ -42,7 +54,6 @@ public class CityDetailsActivity extends AppCompatActivity {
 
         //show back arrow in title bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         editTitle = findViewById(R.id.editTitle);
         editInhabitants = findViewById(R.id.editInhabitants);
@@ -54,7 +65,7 @@ public class CityDetailsActivity extends AppCompatActivity {
         Button btnUpdate = findViewById(R.id.btnSave);
         btnUpdate.setOnClickListener(view -> saveItem());
         spinner = findViewById(R.id.spinnerContinents);
-        spinner.setAdapter(new ArrayAdapter<City.Continent>(this, R.layout.spinner_item, City.Continent.values()));
+        spinner.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, City.Continent.values()));
         spinner.setSelected(false);
         imageViewCity = findViewById(R.id.imageView);
         imageViewCity.setOnClickListener(view -> selectImage());
@@ -64,15 +75,19 @@ public class CityDetailsActivity extends AppCompatActivity {
             editInhabitants.setText(String.format("%,d", city.getInhabitants()));
             editDescription.setText(city.getAttractions());
             editTitle.setText(city.getName());
-            imageUri = city.getImageUri();
-            if (imageUri != null && !imageUri.isEmpty())
-                Glide.with(this).load(imageUri).fitCenter().into(imageViewCity);
+            imagePath = city.getImagePath();
+            if (imagePath != null && !imagePath.isEmpty())
+                Glide.with(this)
+                        .load(imagePath)
+                        .skipMemoryCache(true)
+                        .centerCrop()
+                        .into(imageViewCity);
             btnDelete.setVisibility(View.VISIBLE);
             btnDelete.setOnClickListener(view -> deleteItem());
             spinner.setSelected(true);
             spinner.setSelection(city.getContinent());
         }
-        db = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase();
+        db = AppDatabase.getDatabase(getApplication());
     }
 
     private void deleteItem() {
@@ -96,7 +111,8 @@ public class CityDetailsActivity extends AppCompatActivity {
             return;
         }
         city.setContinent(spinner.getSelectedItemPosition());
-        city.setImageUri(imageUri);
+        if (imageBitmap != null)
+            city.setImagePath(copyImageToInternalStorage());
         if (city.getUid() > 0)
             db.cityDao().update(city);
         else
@@ -105,35 +121,59 @@ public class CityDetailsActivity extends AppCompatActivity {
     }
 
     private void selectImage() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("image/*");
-        takeFlags = intent.getFlags()
-                & (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent, REQUEST_PICK_IMAGE);
-        }
-
+        startActivityForResult(intent, REQUEST_PICK_IMAGE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
-            Uri uri = data.getData();
-            if (uri != null) {
-                //sonst nach Neustart nicht mehr verfügbar ...
+            Uri selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                Glide.with(this)
+                        .asBitmap()
+                        .load(selectedImageUri)
+                        .centerCrop()
+                        .into(
+                                new CustomTarget<Bitmap>() {
+                                    @Override
+                                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                        imageViewCity.setImageBitmap(resource);
+                                        imageBitmap = resource;
+                                    }
 
-                getContentResolver().takePersistableUriPermission(uri, takeFlags);
+                                    @Override
+                                    public void onLoadCleared(@Nullable Drawable placeholder) {
 
-                //getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                imageViewCity.setImageURI(uri);
-                imageUri = uri.toString();
+                                    }
+
+
+                                });
             }
         }
 
 
+    }
+
+    private String copyImageToInternalStorage() {
+        if (imageBitmap == null)
+            return "";
+        Date now = new Date();
+        String imageFilename = now.getTime() + ".jpg";
+        FileOutputStream fileOutputStream = null;
+        File file = new File(this.getFilesDir(), imageFilename);
+        try {
+            fileOutputStream = this.openFileOutput(imageFilename, Context.MODE_PRIVATE);
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 50, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            return file.getAbsolutePath();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }
 

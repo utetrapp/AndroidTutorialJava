@@ -1,6 +1,7 @@
 package de.h_da.fbi.demoroom;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import de.h_da.fbi.demoroom.model.AppDatabase;
 import de.h_da.fbi.demoroom.model.City;
 import de.h_da.fbi.demoroom.model.DatabaseClient;
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         spinner = findViewById(R.id.spinnerContinents);
         //vordefiniert existiert: android.R.layout.simple_spinner_item
-        spinner.setAdapter(new ArrayAdapter<City.Continent>(this, R.layout.spinner_item, City.Continent.values()));
+        spinner.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, City.Continent.values()));
         spinner.setOnItemSelectedListener(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (continent == City.Continent.Any)
             filteredCities = allCities;
         else{
-            filteredCities = new ArrayList<City>();
+            filteredCities = new ArrayList<>();
             //diese Syntax braucht api 24, also Android 7, alternativ einfach
             //for (City city : allCities)
             //                if (city.getContinent() == continent)
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onResume(){
         super.onResume();
         spinner.setSelected(false);
-        allCities = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().cityDao().getAll();
+        allCities = AppDatabase.getDatabase(getApplication()).cityDao().getAll();
         fillCities(City.Continent.Any);
     }
 

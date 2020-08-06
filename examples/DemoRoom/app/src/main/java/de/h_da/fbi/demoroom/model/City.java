@@ -1,7 +1,5 @@
 package de.h_da.fbi.demoroom.model;
 
-import android.net.Uri;
-
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -26,15 +24,15 @@ public class City implements Serializable {
     private String name;
     private long inhabitants;
     private String attractions;
-    private String imageUri;
+    private String imagePath;
     private int continent;
 
     @Ignore
-    public City(String name, long inhabitants, String attractions, String imageUri, Continent continent) {
+    public City(String name, long inhabitants, String attractions, String imagePath, Continent continent) {
         setName(name);
         setInhabitants(inhabitants);
         setAttractions(attractions);
-        setImageUri(imageUri);
+        setImagePath(imagePath);
         setContinentAsEnumField(continent);
     }
 
@@ -65,12 +63,12 @@ public class City implements Serializable {
         this.attractions = attractions;
     }
 
-    public String getImageUri() {
-        return imageUri;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImageUri(String imageUri) {
-        this.imageUri = imageUri;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public Continent getContinentAsEnumField() {
