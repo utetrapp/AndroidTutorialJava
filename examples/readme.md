@@ -257,7 +257,10 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
 - Für Date und anderen Nicht-Sql-Datentypen verwenden Sie Converter https://developer.android.com/training/data-storage/room/referencing-data
 
 
-### Firebase (in Planung)
+### Firebase (fertig)
+- Erklärvideo unter https://youtu.be/haTDMY12qgs
+- Unterverzeichnis von examples: DemoFirebase
+- Einführung in Firestore https://firebase.google.com/products/firestore
 - Lab https://codelabs.developers.google.com/codelabs/firebase-android/index.html?index=..%2F..index#0
 - Die Demo-App erlaubt es, allen Benutzern über eine Art schwarzes Brett miteinander zu kommunizieren -- ohne Anmeldung o.ä. -- vor dem Starten der App müssen Sie Ihre Firebasedaten eingeben (vgl. Video).
 - Checkliste
@@ -272,20 +275,39 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
     - Unterstützte Datentypen: https://firebase.google.com/docs/firestore/manage-data/data-types
   - Sie können ähnlich wie bei Room einfache Datenklassen erstellen und mit diesen arbeiten.
   - In der Firebase-Console können Sie unter Database sich die Daten ansehen.
-
-### Bibliotheken (Onboarding, Bilder, Charts, …) (in Planung)
+  - Artikel des Magazings Jaxenter https://jaxenter.de/android/app-entwicklung-firebase-mobile-95419
 
 ## Zusammenfassung, Ergänzungen und Ausblick
-- package by feature: https://www.techyourchance.com/popular-package-structures/
-- Architektur, Fragments, ViewModel, Navigation Component, View Binding (one way) und Data Binding (two way), DependencyInjection
-- umfangreiche DemoApp mit allen best practices https://github.com/android/sunflower
-- https://developer.android.com/jetpack/guide
-- https://developer.android.com/guide/components/fragments
-- https://developer.android.com/topic/libraries/architecture/viewmodel
-- https://developer.android.com/guide/navigation
-- https://developer.android.com/guide/navigation/navigation-migrate
-- https://www.techyourchance.com/
-- Activities vs. Fragments: https://www.techyourchance.com/navigation-between-screens-android/ und https://github.com/xxv/android-lifecycle und https://www.techyourchance.com/android-fragment-lifecycle/ (Zitat: "Fragments are a mess. Their lifecycle is rocket science. The only thing worse than Fragments is their official documentation.")
-- guides: https://developer.android.com/guide
- 
-
+- Bibliotheken
+  - Charts
+    - sehr mächtig, gut dokumentiert und gut zu nutzen
+	- https://github.com/PhilJay/MPAndroidChart
+  - ColorPicker
+    - https://github.com/skydoves/ColorPickerView
+  - Flexbox insb. für RecyclerView
+    - https://github.com/google/flexbox-layout
+  - Glide für Bilder, wie in mehreren Demos verwendet
+    - https://github.com/bumptech/glide
+  - Onboarding -- einfach zu integrieren
+    - https://github.com/AppIntro/AppIntro
+  - Permission-Handling
+    - https://github.com/Karumi/Dexter
+  - gute Listen
+    - https://github.com/aritraroy/UltimateAndroidReference
+    - https://github.com/JStumpp/awesome-android
+- Open-Source- und Beispielanwendungen
+  - umfangreiche DemoApp mit allen best practices (leider nur noch in Kotlin) https://github.com/android/sunflower
+  - https://github.com/HoraApps/LeafPic/tree/dev/app/src/main/java/org/horaapps/leafpic
+  - https://github.com/TeamAmaze/AmazeFileManager
+- Nächste Schritte
+  - Verwendung von Fragments
+    - https://developer.android.com/guide/components/fragments
+	- Diskussion Activities vs. Fragments: https://www.techyourchance.com/navigation-between-screens-android/ und https://github.com/xxv/android-lifecycle und https://www.techyourchance.com/android-fragment-lifecycle/ (Zitat: "Fragments are a mess. Their lifecycle is rocket science. The only thing worse than Fragments is their official documentation.")
+  - Navigation Component	
+    - https://developer.android.com/guide/navigation
+    - https://developer.android.com/guide/navigation/navigation-migrate
+  - View-Models
+    - - https://developer.android.com/topic/libraries/architecture/viewmodel
+- Guides von Android developer	
+  - https://developer.android.com/guide
+  - https://developer.android.com/jetpack/guide
