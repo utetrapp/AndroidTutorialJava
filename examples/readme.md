@@ -35,7 +35,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### Resources, Styling und Mehrsprachigkeit (fertig)
 - Erklärvideo unter https://youtu.be/bfwhN9O9i6Q
-- - Unterverzeichnis von examples: DemoResources
+- Unterverzeichnis von examples: DemoResources
 - Resourcen
   - https://developer.android.com/guide/topics/resources/providing-resources.html
 - Mehrsprachigkeit
@@ -91,7 +91,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
 
 ### LinearLayout & ConstraintLayout (fertig)
 - Erklärvideo unter https://youtu.be/1U5p69lQ-Ek
-- - Unterverzeichnis von examples: LayoutDemos
+- Unterverzeichnis von examples: LayoutDemos
 - https://dribbble.com/shots/popular/mobile
 - Layout (ViewGroup)
   - https://developer.android.com/guide/topics/ui/declaring-layout 
@@ -278,6 +278,13 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
   - Artikel des Magazings Jaxenter https://jaxenter.de/android/app-entwicklung-firebase-mobile-95419
 
 ## Zusammenfassung, Ergänzungen und Ausblick
+- Video unter https://youtu.be/rCPkxq5-nOc
+- Logging und Logcat https://developer.android.com/studio/debug/am-logcat
+- IDE
+  - Refactoring (encapsulate field, extract method, ...)
+  - Code (Reformat Code, Optimize imports, comment, ...)
+  - Analyse --> Code Inspection
+  - Module Settings --> Dependencies --> update
 - Bibliotheken
   - Charts
     - sehr mächtig, gut dokumentiert und gut zu nutzen
@@ -307,7 +314,7 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
     - https://developer.android.com/guide/navigation
     - https://developer.android.com/guide/navigation/navigation-migrate
   - View-Models
-    - - https://developer.android.com/topic/libraries/architecture/viewmodel
+    - https://developer.android.com/topic/libraries/architecture/viewmodel
 - Guides von Android developer	
   - https://developer.android.com/guide
   - https://developer.android.com/jetpack/guide
