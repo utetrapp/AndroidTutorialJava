@@ -30,15 +30,12 @@ public class DemoBottomNavigation implements BottomNavigationView.OnNavigationIt
         if (id == R.id.bottom_nav_a) {
             Intent intent = new Intent(parent, ActivityA.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NO_HISTORY);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION); //avoid activity stack, hence no back possible!
-            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION); //avoid activity stack, hence no back possible!
             parent.startActivity(intent);
             return true;
         }
         if (id == R.id.bottom_nav_b) {
             Intent intent = new Intent(parent, ActivityB.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NO_HISTORY);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION);
             parent.startActivity(intent);
             return true;
         }
