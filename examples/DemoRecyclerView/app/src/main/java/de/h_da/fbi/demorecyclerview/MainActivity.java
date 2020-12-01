@@ -17,7 +17,7 @@ import de.h_da.fbi.demorecyclerview.model.City;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<City> cities = new ArrayList();
+    private final List<City> cities = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

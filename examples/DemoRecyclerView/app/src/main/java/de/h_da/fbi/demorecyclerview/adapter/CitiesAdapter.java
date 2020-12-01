@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,8 +19,8 @@ import de.h_da.fbi.demorecyclerview.model.City;
 
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesViewHolder>{
 
-    private List<City> cities;
-    private Context context;
+    private final List<City> cities;
+    private final Context context;
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public CitiesAdapter(Context context, List<City> cities) {
@@ -45,10 +46,9 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class CitiesViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView textViewName;
-        public ImageView imageView;
+    public static class CitiesViewHolder extends RecyclerView.ViewHolder  {
+        public final TextView textViewName;
+        public final ImageView imageView;
         public CitiesViewHolder(View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
@@ -59,11 +59,11 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
 
 
     // Create new views (invoked by the layout manager)
+    @NonNull
     @Override
-    public CitiesAdapter.CitiesViewHolder onCreateViewHolder(ViewGroup parent,
+    public CitiesAdapter.CitiesViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                              int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.viewholder_cities, parent, false);
-        CitiesViewHolder vh = new CitiesViewHolder(view);
-        return vh;
+        return new CitiesViewHolder(view);
     }
 }
