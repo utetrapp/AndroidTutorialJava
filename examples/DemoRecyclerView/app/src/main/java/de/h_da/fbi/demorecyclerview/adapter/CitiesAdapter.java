@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,13 +47,20 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class CitiesViewHolder extends RecyclerView.ViewHolder  {
+    public class CitiesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final TextView textViewName;
         public final ImageView imageView;
         public CitiesViewHolder(View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
             imageView = itemView.findViewById(R.id.imageView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            City clickedCity = cities.get(getAdapterPosition());
+            Toast.makeText(context, clickedCity.getName(), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,6 +1,8 @@
 package de.h_da.fbi.demorecyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import de.h_da.fbi.demorecyclerview.adapter.CitiesAdapter;
@@ -18,6 +21,7 @@ import de.h_da.fbi.demorecyclerview.model.City;
 public class MainActivity extends AppCompatActivity {
 
     private final List<City> cities = new ArrayList<>();
+    CitiesAdapter citiesAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +29,63 @@ public class MainActivity extends AppCompatActivity {
         iniCities();
 
         RecyclerView recyclerViewCities = findViewById(R.id.recyclerViewCities);
-        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
-        layoutManager.setFlexWrap(FlexWrap.WRAP);
-        layoutManager.setFlexDirection(FlexDirection.ROW);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerViewCities.setLayoutManager(layoutManager);
-        recyclerViewCities.setAdapter(new CitiesAdapter(this, cities));
+        citiesAdapter = new CitiesAdapter(this, cities);
+        recyclerViewCities.setAdapter(citiesAdapter);
+
+
+        createListInteraction().attachToRecyclerView(recyclerViewCities);
+
+    }
+
+    private ItemTouchHelper createListInteraction() {
+        // Helper class for creating swipe to dismiss and drag and drop
+        // functionality.
+        return new ItemTouchHelper(new ItemTouchHelper
+                .SimpleCallback(
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT |
+                        ItemTouchHelper.DOWN | ItemTouchHelper.UP,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            /**
+             * Defines the drag and drop functionality.
+             *
+             * @param recyclerView The RecyclerView that contains the list items
+             * @param viewHolder The SportsViewHolder that is being moved
+             * @param target The SportsViewHolder that you are switching the
+             *               original one with.
+             * @return true if the item was moved, false otherwise
+             */
+            @Override
+            public boolean onMove(RecyclerView recyclerView,
+                                  RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
+                // Get the from and to positions.
+                int from = viewHolder.getAdapterPosition();
+                int to = target.getAdapterPosition();
+
+                // Swap the items and notify the adapter.
+                Collections.swap(cities, from, to);
+                citiesAdapter.notifyItemMoved(from, to);
+                return true;
+            }
+
+            /**
+             * Defines the swipe to dismiss functionality.
+             *
+             * @param viewHolder The viewholder being swiped.
+             * @param direction The direction it is swiped in.
+             */
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder,
+                                 int direction) {
+                // Remove the item from the dataset.
+                cities.remove(viewHolder.getAdapterPosition());
+                // Notify the adapter.
+                citiesAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        });
     }
 
     private void iniCities(){
