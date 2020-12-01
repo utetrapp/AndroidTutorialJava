@@ -122,6 +122,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - Visualisierung/Erläuterung
     - https://www.youtube.com/watch?v=-VPM6ICgCk8
 	- https://android.jlelse.eu/understanding-recyclerview-components-part-2-1fd43001a98f
+  - Interaktion (onclick) erfordert eine nicht-statische Definition der ViewHolder-Klasse, Beispiel vgl. https://github.com/google-developer-training/android-fundamentals-apps-v2/blob/master/MaterialMe/app/src/main/java/com/example/android/materialme/SportsAdapter.java und zugehöriger Code für Swipe etc. https://github.com/google-developer-training/android-fundamentals-apps-v2/blob/master/MaterialMe/app/src/main/java/com/example/android/materialme/MainActivity.java
 
 
 ### AppData mit Fokus auf SharedPreferences und SettingsActivity (fertig)
