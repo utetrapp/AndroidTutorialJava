@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="de.h_da.fbi.demoarchitecturecomponents.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="de.h_da.fbi.demoarchitecturecomponents.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_shopFragment"
+            app:destination="@id/shopFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_bookListFragment"
+            app:destination="@id/bookListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="de.h_da.fbi.demoarchitecturecomponents.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/shopFragment"
+        android:name="de.h_da.fbi.demoarchitecturecomponents.ui.shop.ShopFragment"
+        android:label="shop_fragment"
+        tools:layout="@layout/shop_fragment" />
+    <fragment
+        android:id="@+id/bookListFragment"
+        android:name="de.h_da.fbi.demoarchitecturecomponents.ui.book.BookListFragment"
+        android:label="fragment_book_list"
+        tools:layout="@layout/fragment_book_list" >
+        <action
+            android:id="@+id/action_bookListFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="de.h_da.fbi.demoarchitecturecomponents.ui.book.BookFragment"
+        android:label="book_fragment"
+        tools:layout="@layout/book_fragment">
+        <argument
+            android:name="book"
+            app:argType="de.h_da.fbi.demoarchitecturecomponents.data.Book"
+             />
+    </fragment>
+</navigation>
