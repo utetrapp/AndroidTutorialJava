@@ -57,6 +57,7 @@ Diese Beispiele adressieren Probleme, die Sie bei fast allen Apps haben.
   - https://developer.android.com/guide/topics/resources/style-resource
 - Theme
   - https://developer.android.com/guide/topics/ui/look-and-feel/themes
+  - https://www.vogella.com/tutorials/AndroidStylesThemes/article.html#using-styles-and-themes-in-your-application
 - Fonts
   - https://developer.android.com/guide/topics/ui/look-and-feel/fonts-in-xml
   - https://fonts.google.com/
@@ -277,6 +278,9 @@ Sowohl Threads als auch den WorkManager werde ich in der Folge zu REST verwenden
   - Sie können ähnlich wie bei Room einfache Datenklassen erstellen und mit diesen arbeiten.
   - In der Firebase-Console können Sie unter Database sich die Daten ansehen.
   - Artikel des Magazings Jaxenter https://jaxenter.de/android/app-entwicklung-firebase-mobile-95419
+  - Weitere Links
+    - https://github.com/firebase/FirebaseUI-Android
+    - Restaurant App mit Firebase: https://github.com/firebase/quickstart-android/tree/master/firestore
 
 ## Zusammenfassung, Ergänzungen und Ausblick
 - Video unter https://youtu.be/rCPkxq5-nOc
