@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import de.h_da.fbi.demoarchitecturecomponents.R
@@ -26,7 +24,7 @@ class DashboardFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dashboardViewModel =
                 ViewModelProvider(this).get(DashboardViewModel::class.java)
 
@@ -34,9 +32,9 @@ class DashboardFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
-        })
+        }
 
         binding.buttonShop.setOnClickListener{ findNavController().navigate(R.id.action_navigation_dashboard_to_shopFragment) }
         binding.buttonBooks.setOnClickListener{ findNavController().navigate(R.id.action_navigation_dashboard_to_bookListFragment)}

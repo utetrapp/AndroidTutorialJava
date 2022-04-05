@@ -6,9 +6,9 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
-public class DemoBottomNavigation implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class DemoBottomNavigation implements NavigationBarView.OnItemSelectedListener {
     final Context parent;
 
     public DemoBottomNavigation(Context parent) {

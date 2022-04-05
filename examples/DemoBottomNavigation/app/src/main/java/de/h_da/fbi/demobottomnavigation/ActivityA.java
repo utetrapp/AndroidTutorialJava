@@ -1,8 +1,8 @@
 package de.h_da.fbi.demobottomnavigation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,7 +15,7 @@ public class ActivityA extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a);
         bottomNav = findViewById(R.id.nav_bottom);
-        bottomNav.setOnNavigationItemSelectedListener(new DemoBottomNavigation(this));
+        bottomNav.setOnItemSelectedListener(new DemoBottomNavigation(this));
 
     }
 

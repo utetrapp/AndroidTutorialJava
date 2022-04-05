@@ -8,7 +8,7 @@ public class Student implements Serializable {
 
     private String name;
     private String city;
-    private int id;
+    private final int id;
 
     public Student(int id, String name, String city){
         this.id = id;

@@ -1,8 +1,6 @@
 package de.h_da.fbi.demoarchitecturecomponents.ui.book.placeholder
 
 import de.h_da.fbi.demoarchitecturecomponents.data.Book
-import java.util.ArrayList
-import java.util.HashMap
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -33,17 +31,17 @@ object PlaceholderContent {
 
     private fun addItem(item: Book) {
         ITEMS.add(item)
-        ITEM_MAP.put(item.id, item)
+        ITEM_MAP[item.id] = item
     }
 
     private fun createPlaceholderItem(position: Int): Book {
-        return Book(position.toString(), "Item " + position, makeDetails(position))
+        return Book(position.toString(), "Item $position", makeDetails(position))
     }
 
     private fun makeDetails(position: Int): String {
         val builder = StringBuilder()
         builder.append("Details about Item: ").append(position)
-        for (i in 0..position - 1) {
+        for (i in 0 until position) {
             builder.append("\nMore details information here.")
         }
         return builder.toString()

@@ -1,16 +1,14 @@
 package de.h_da.fbi.demoarchitecturecomponents.ui.book
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import de.h_da.fbi.demoarchitecturecomponents.data.Book
-
 import de.h_da.fbi.demoarchitecturecomponents.databinding.ViewholderBookBinding
-import de.h_da.fbi.demoarchitecturecomponents.ui.book.BookListFragment
-import de.h_da.fbi.demoarchitecturecomponents.ui.book.BookFragment
+
 /**
  * [RecyclerView.Adapter] that can display a [Book].
  * TODO: Replace the implementation with code for your data type.

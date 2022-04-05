@@ -1,15 +1,30 @@
 package de.h_da.fbi.activitycommunication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class StudentsActivity extends AppCompatActivity {
-    private static int ACTIVITY_RESULT = 42;
     private Student student1, student2;
+
+
+    private final ActivityResultLauncher<Intent> editStudentActivityLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    if (data != null)
+                        handleEditStudentResult(data);
+                }
+            });
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -38,7 +53,7 @@ public class StudentsActivity extends AppCompatActivity {
     private void navigateToEditStudent(Student student) {
         Intent intent = new Intent(this, EditStudentActivity.class);
         intent.putExtra("student", student);
-        this.startActivityForResult(intent, ACTIVITY_RESULT);
+        editStudentActivityLauncher.launch(intent);
     }
 
     private void showStudent1(){
@@ -49,10 +64,7 @@ public class StudentsActivity extends AppCompatActivity {
         TextView txt = findViewById(R.id.textViewStudent2);
         txt.setText(student2.toString());
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
+    private void handleEditStudentResult(Intent data){
             Student student = (Student) data.getSerializableExtra("student");
             if (student != null) {
                if(student.getId() == 1) {
@@ -66,5 +78,5 @@ public class StudentsActivity extends AppCompatActivity {
             }
 
         }
-    }
+
 }
