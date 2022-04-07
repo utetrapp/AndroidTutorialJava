@@ -1,16 +1,12 @@
 package de.h_da.fbi.demorecyclerview;
 
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.View;
-
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexWrap;
-import com.google.android.flexbox.FlexboxLayoutManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
                  * @return true if the item was moved, false otherwise
                  */
                 @Override
-                public boolean onMove(RecyclerView recyclerView,
-                                      RecyclerView.ViewHolder viewHolder,
-                                      RecyclerView.ViewHolder target) {
+                public boolean onMove(@NonNull RecyclerView recyclerView,
+                                      @NonNull RecyclerView.ViewHolder viewHolder,
+                                      @NonNull RecyclerView.ViewHolder target) {
                     // Get the from and to positions.
                     int from = viewHolder.getAdapterPosition();
                     int to = target.getAdapterPosition();
@@ -77,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                  * @param direction The direction it is swiped in.
                  */
                 @Override
-                public void onSwiped(RecyclerView.ViewHolder viewHolder,
+                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder,
                                      int direction) {
                     // Remove the item from the dataset.
                     cities.remove(viewHolder.getAdapterPosition());

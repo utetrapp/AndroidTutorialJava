@@ -4,19 +4,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Message> messages;
-    private String userId;
-    private Context context;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.");
+    private final List<Message> messages;
+    private final String userId;
+    private final Context context;
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.");
     private final int VIEW_TYPE_MESSAGE_SENT = 1;
     private final int VIEW_TYPE_MESSAGE_RECEIVED = 0;
 
@@ -26,8 +26,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.userId = userId;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //default received
         if (viewType == VIEW_TYPE_MESSAGE_SENT) {
             View view = LayoutInflater.from(parent.getContext())
@@ -68,7 +69,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     class SentMessageViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtContent, txtDate;
+        final TextView txtContent;
+        final TextView txtDate;
 
         public SentMessageViewHolder(View itemView) {
             super(itemView);
@@ -85,7 +87,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     class ReceivedMessageViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtContent, txtDate;
+        final TextView txtContent;
+        final TextView txtDate;
 
         public ReceivedMessageViewHolder(View itemView) {
             super(itemView);

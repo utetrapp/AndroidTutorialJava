@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textAlignment="viewEnd"
         android:paddingBottom="10dp"
         android:paddingRight="10dp"

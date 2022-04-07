@@ -1,5 +1,6 @@
 package de.h_da.fbi.demoroom;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +30,7 @@ import java.io.FileOutputStream;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Objects;
 
 import de.h_da.fbi.demoroom.model.AppDatabase;
 import de.h_da.fbi.demoroom.model.City;
@@ -37,10 +41,18 @@ public class CityDetailsActivity extends AppCompatActivity {
     private EditText editTitle, editDescription, editInhabitants;
     private ImageView imageViewCity;
     private Spinner spinner;
-    private static final int REQUEST_PICK_IMAGE = 42;
     private String imagePath = "";
     private Bitmap imageBitmap = null;
 
+    private final ActivityResultLauncher<Intent> editPickImageLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    if (data != null)
+                        handlePickedImage(data);
+                }
+            });
     //handle click on  back arrow
     @Override
     public boolean onSupportNavigateUp() {
@@ -54,7 +66,7 @@ public class CityDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_city_details);
 
         //show back arrow in title bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         editTitle = findViewById(R.id.editTitle);
         editInhabitants = findViewById(R.id.editInhabitants);
@@ -95,9 +107,7 @@ public class CityDetailsActivity extends AppCompatActivity {
         if (city != null) {
             AppDatabase.databaseExecutor.execute(() -> {
                 db.cityDao().delete(city);
-                runOnUiThread(() -> {
-                    Toast.makeText(this, "gelöscht", Toast.LENGTH_LONG).show();
-                });
+                runOnUiThread(() -> Toast.makeText(this, "gelöscht", Toast.LENGTH_LONG).show());
             });
         }
         finish();
@@ -111,6 +121,7 @@ public class CityDetailsActivity extends AppCompatActivity {
         city.setAttractions(editDescription.getText().toString().trim());
         try {
             Number number = NumberFormat.getInstance().parse(editInhabitants.getText().toString());
+            assert number != null;
             city.setInhabitants(number.intValue());
         } catch (NumberFormatException | ParseException ex) {
             editInhabitants.setError("leider keine ganze Zahl");
@@ -120,13 +131,9 @@ public class CityDetailsActivity extends AppCompatActivity {
         if (imageBitmap != null)
             city.setImagePath(copyImageToInternalStorage());
         if (city.getUid() > 0)
-            AppDatabase.databaseExecutor.execute(() -> {
-                db.cityDao().update(city);
-            });
+            AppDatabase.databaseExecutor.execute(() -> db.cityDao().update(city));
         else
-            AppDatabase.databaseExecutor.execute(() -> {
-                db.cityDao().insert(city);
-            });
+            AppDatabase.databaseExecutor.execute(() -> db.cityDao().insert(city));
 
         finish();
     }
@@ -134,13 +141,10 @@ public class CityDetailsActivity extends AppCompatActivity {
     private void selectImage() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("image/*");
-        startActivityForResult(intent, REQUEST_PICK_IMAGE);
+        editPickImageLauncher.launch(intent);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
+    private void handlePickedImage(Intent data) {
             Uri selectedImageUri = data.getData();
             if (selectedImageUri != null) {
                 Glide.with(this)
@@ -165,15 +169,12 @@ public class CityDetailsActivity extends AppCompatActivity {
             }
         }
 
-
-    }
-
     private String copyImageToInternalStorage() {
         if (imageBitmap == null)
             return "";
         Date now = new Date();
         String imageFilename = now.getTime() + ".jpg";
-        FileOutputStream fileOutputStream = null;
+        FileOutputStream fileOutputStream;
         File file = new File(this.getFilesDir(), imageFilename);
         try {
             fileOutputStream = this.openFileOutput(imageFilename, Context.MODE_PRIVATE);

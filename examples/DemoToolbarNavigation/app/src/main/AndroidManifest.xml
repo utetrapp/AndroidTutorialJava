@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityB"></activity>
-        <activity android:name=".ActivityA" />
+        <activity android:name=".ActivityB" android:exported="false"></activity>
+        <activity android:name=".ActivityA" android:exported="false"/>
         <activity android:name=".MainActivity"
+			android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

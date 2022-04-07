@@ -76,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
         txtBmi.setText(String.format("BMI: %.1f", bmi));
     }
 
-
+    //fest verdrahtet über xml in onClick des Buttons und damit braucht es diese Signatur,
+    // auch wenn die Code-Inspection dies nicht erkennt, daher Suppress hier!
+    @SuppressWarnings("unused")
     public void gotoSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);

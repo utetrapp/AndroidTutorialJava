@@ -18,7 +18,8 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -40,7 +41,8 @@
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/textViewInhabitants"
-        app:layout_constraintTop_toBottomOf="@id/guideline" />
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/textViewInhabitants"
@@ -70,7 +72,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-        app:layout_constraintTop_toBottomOf="@id/spinnerContinents" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerContinents"
+        android:importantForAutofill="no" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

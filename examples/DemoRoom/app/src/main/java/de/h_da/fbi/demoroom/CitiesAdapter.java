@@ -9,27 +9,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import de.h_da.fbi.demoroom.model.City;
-
 import java.text.NumberFormat;
 import java.util.List;
 
+import de.h_da.fbi.demoroom.model.City;
+
 //@see
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesViewHolder> {
-    private List<City> cities;
-    private Context context;
+    private final List<City> cities;
+    private final Context context;
 
     public CitiesAdapter(Context context, List<City> cities) {
         this.context = context;
         this.cities = cities;
     }
 
+    @NonNull
     @Override
-    public CitiesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CitiesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.viewholder_city, parent, false);
         return new CitiesViewHolder(itemView);
     }
@@ -55,8 +57,10 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
 
     class CitiesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView textViewTitle, textViewInhabitants, textViewDescription;
-        ImageView imageViewCity;
+        final TextView textViewTitle;
+        final TextView textViewInhabitants;
+        final TextView textViewDescription;
+        final ImageView imageViewCity;
 
         public CitiesViewHolder(View itemView) {
             super(itemView);
@@ -76,7 +80,7 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
             Intent intent = new Intent(context, CityDetailsActivity.class);
             intent.putExtra("city", city);
 
-            ((Activity) context).startActivity(intent);
+            context.startActivity(intent);
         }
 
     }

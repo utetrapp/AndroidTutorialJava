@@ -2,7 +2,6 @@
     <string name="app_name">DemoToolbarNavigation</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="menu_home">home</string>
     <string name="menu_activitya">activity a</string>
     <string name="menu_activityb">activity b</string>
     <string name="nav_header_title">nav header title</string>

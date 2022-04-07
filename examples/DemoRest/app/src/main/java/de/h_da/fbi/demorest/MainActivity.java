@@ -76,13 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                (response) -> {
-                    textViewResponse.setText("Response (string): " + response.substring(0, Math.min(response.length() - 1, 500)));
-                }
+                (response) -> textViewResponse.setText("Response (string): " + response.substring(0, Math.min(response.length() - 1, 500)))
 
-                , (error) -> {
-            textViewResponse.setText("That didn't work! " + error.getMessage());
-        }
+                , (error) -> textViewResponse.setText("That didn't work! " + error.getMessage())
 
         );
 
@@ -92,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendJsonRequest(View view) {
         //@see https://app.swaggerhub.com/apis/Bandsintown/PublicAPI/3.0.0
-        String url = "https://rest.bandsintown.com/artists/paddy%20goes%20to%20holyhead?app_id=1";
+        String url = "https://rest.bandsintown.com/artists/paddy%20goes%20to%20holyhead?app_id=510";
         //Zugriff auf localhost 127.0.0.1 ist loopback des Android-Geräts, daher auf ip-Adresse des Rechners zugreifen (ipconfig in cmd eingeben)
         if (editTextUrl.getText().length() > 0)
             url = editTextUrl.getText().toString();
@@ -117,9 +113,7 @@ public class MainActivity extends AppCompatActivity {
                                 textViewResponse.setText("JSON problem " + e.getMessage());
                             }
                         }
-                        , (error) -> {
-                    textViewResponse.setText("That didn't work! " + error.getMessage());
-                }
+                        , (error) -> textViewResponse.setText("That didn't work! " + error.getMessage())
                 );
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(jsonObjectRequest);
@@ -180,12 +174,12 @@ public class MainActivity extends AppCompatActivity {
                 return String.format("problem - response code: %d", conn.getResponseCode());
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String result = "";
+            StringBuilder result = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
-                result += line;
+                result.append(line);
             }
-            return result;
+            return result.toString();
         } catch (Exception ex) {
             return "error:" + ex.getMessage();
         }

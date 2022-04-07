@@ -59,8 +59,11 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
 
         @Override
         public void onClick(View view) {
-            City city = cities.get(getAdapterPosition());
-            Toast.makeText(context, city.getName(), Toast.LENGTH_SHORT).show();
+            int position = getAdapterPosition();
+            if (position != -1) {
+                City city = cities.get(position);
+                Toast.makeText(context, city.getName(), Toast.LENGTH_SHORT).show();
+            }
             
         }
     }

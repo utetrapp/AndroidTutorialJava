@@ -28,7 +28,9 @@
             android:hint="url"
             android:text=""
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:inputType="textUri"
+            android:autofillHints="https://duckduckgo.com/" />
 
         <Button
             android:id="@+id/button1"

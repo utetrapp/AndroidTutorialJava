@@ -1,69 +1,47 @@
 package de.h_da.fbi.demofirebase;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.work.WorkManager;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
-
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.core.OrderBy;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    final String PREF_KEY_USER = "userId";
+    final String PREF_KEY_NICKNAME = "nickname";
     private final String TAG = "MainActivity";
     private final String COLLECTION_NAME_USERS = "users";
     private final String COLLECTION_NAME_MESSAGES = "messages";
-    final String PREF_KEY_USER = "userId";
-    final String PREF_KEY_NICKNAME = "nickname";
-    private String nickname;
-    private String userId;
-    private List<User> allUsers = new ArrayList<>();
     FirebaseFirestore db;
-
     //ui-elements
     EditText txtMessage, txtNickname;
     RecyclerView rvMessages;
-    Button btnSend, btnSignIn;
+    Button btnSend, btnSignIn, btnConnect;
+    private View mainLayout;
+    private String nickname;
+    private String userId;
+    private List<User> allUsers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mainLayout = findViewById(R.id.mainLayout);
         txtMessage = findViewById(R.id.txtMessage);
         txtNickname = findViewById(R.id.txtNickname);
         rvMessages = findViewById(R.id.rvMessages);
@@ -75,30 +53,33 @@ public class MainActivity extends AppCompatActivity {
         txtMessage.setVisibility(View.GONE);
         btnSend.setVisibility(View.GONE);
         btnSignIn.setVisibility(View.GONE);
-
+        btnConnect = findViewById(R.id.btnConnect);
+        btnConnect.setOnClickListener(view -> connectToFirebase());
         //Layout für die Anordnung der Elemente
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvMessages.setLayoutManager(layoutManager);
-
-        db = FirebaseFirestore.getInstance();
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        if (auth != null) {
-            auth.signInAnonymously().addOnFailureListener(ex -> {
-                Toast.makeText(getApplicationContext(), "no connection to database " + ex.getMessage(), Toast.LENGTH_LONG).show();
-            }).addOnSuccessListener(result -> {
-                iniUser();
-                listenToChanges();
-            });
-        }
-
-
     }
 
-    private void listenToChanges(){
+    private void connectToFirebase() {
+        db = FirebaseFirestore.getInstance();
+        //@see https://firebase.google.com/docs/auth/android/anonymous-auth
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.signInAnonymously()//not for production!!!
+                .addOnFailureListener(ex -> Toast.makeText(getApplicationContext(), "no connection to database " + ex.getMessage(), Toast.LENGTH_LONG).show())
+                .addOnSuccessListener(result -> {
+                    Toast.makeText(getApplicationContext(), "sign in succeeded", Toast.LENGTH_LONG).show();
+                    btnConnect.setVisibility(View.GONE);
+                    iniUser();
+                    listenToChanges();
+                });
+    }
+
+    private void listenToChanges() {
+        //@see https://firebase.google.com/docs/firestore/query-data/listen
         db.collection(COLLECTION_NAME_MESSAGES).addSnapshotListener((snapshot, e) -> {
             if (e != null) {
-                Log.w(TAG, "Listen failed.", e);
+                Toast.makeText(getApplicationContext(), "listen to messages failed", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -107,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void sendMessage() {
         if (db != null && !userId.isEmpty()) {
             db.collection(COLLECTION_NAME_MESSAGES).add(new Message(txtMessage.getText().toString().trim(), userId, nickname));
@@ -127,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             rvMessages.scrollToPosition(messages.size() - 1);
                         } else {
                             Log.e(TAG, "Error getting messages: ", task.getException());
+                            Toast.makeText(getApplicationContext(), "error reading messages ", Toast.LENGTH_LONG).show();
                         }
                     });
     }
@@ -141,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             txtNickname.setError("unable to fetch existing users, please try again later");
             return;
         }
-        if (allUsers.stream().filter(o -> o.getNickname().equals(nickname)).findFirst().isPresent()) {
+        if (allUsers.stream().anyMatch(o -> o.getNickname().equals(nickname))) {
             txtNickname.setError("nickname exists");
             return;
         }
@@ -175,15 +158,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 txtNickname.setVisibility(View.VISIBLE);
                 btnSignIn.setVisibility(View.VISIBLE);
-            }).addOnFailureListener(ex -> {
-                        Toast.makeText(getApplicationContext(), "Error getting data!!!" + ex.getMessage(), Toast.LENGTH_LONG).show();
-                    }
+            }).addOnFailureListener(ex -> Toast.makeText(getApplicationContext(), "Error getting data!!!" + ex.getMessage(), Toast.LENGTH_LONG).show()
             );
         } else {
             txtMessage.setVisibility(View.VISIBLE);
             btnSend.setVisibility(View.VISIBLE);
         }
     }
-
-
 }
