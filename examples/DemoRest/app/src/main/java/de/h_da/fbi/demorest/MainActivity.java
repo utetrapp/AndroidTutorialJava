@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         //@see https://developer.android.com/training/volley/simple
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://www.google.de";
+        String url = "https://www.google.de";
         if (editTextUrl.getText().length() > 0)
             url = editTextUrl.getText().toString();
 
@@ -90,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
         //@see https://app.swaggerhub.com/apis/Bandsintown/PublicAPI/3.0.0
         String url = "https://rest.bandsintown.com/artists/paddy%20goes%20to%20holyhead?app_id=510";
         //Zugriff auf localhost 127.0.0.1 ist loopback des Android-Geräts, daher auf ip-Adresse des Rechners zugreifen (ipconfig in cmd eingeben)
-        if (editTextUrl.getText().length() > 0)
-            url = editTextUrl.getText().toString();
         //@see https://developer.android.com/training/volley/request
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null,

@@ -21,6 +21,13 @@
             android:visibility="gone"
             />
 
+        <TextView
+            android:id="@+id/lblIntro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Enter an url to be requested either simple per string, thread oder workmanager, then press one of the buttons below"/>
         <EditText
             android:id="@+id/editTextUrl"
             android:layout_width="match_parent"
@@ -28,7 +35,7 @@
             android:hint="url"
             android:text=""
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblIntro"
             android:inputType="textUri"
             android:autofillHints="https://duckduckgo.com/" />
 
@@ -40,15 +47,6 @@
             android:onClick="sendStringRequest"
             android:text="send string request"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextUrl" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:onClick="sendJsonRequest"
-            android:text="send json request"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextUrl" />
 
         <Button
@@ -75,10 +73,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:onClick="sendAsWorkManager"
         android:text="cancel workmanager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonWorkManager" />
+
+        <Button
+            android:id="@+id/btnSendAsJson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="sendJsonRequest"
+            android:text="send json request to music lib api"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonCancel" />
 
 
         <TextView
@@ -88,7 +95,7 @@
             android:layout_marginTop="20dp"
             android:text=""
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonCancel" />
+            app:layout_constraintTop_toBottomOf="@id/btnSendAsJson" />
 
         <TextView
             android:id="@+id/textViewArtistName"
