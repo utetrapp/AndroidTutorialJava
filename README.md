@@ -17,7 +17,7 @@ Dieser Kurs richtet sich an alle, die Android mit Java lernen möchten und berei
 | DemoRest | Abfrage einer API mit Volley; asynchron mit Thread und Workmanager (mit cancel und circular progress); JSON | <img src="screenshots/.jpg" height="120"> |
 | DemoRoom | SQL-DB-Zugriff mit ORM-Mapper Room, und Spinner für Filterfunktion, Bilder werden mit glide geladen, Auswahl von Bild aus Galerie, Recyclerview zur Anzeige der Ergebnisse | <img src="screenshots/DemoRoom1.jpg" height="120"> | <img src="screenshots/DemoRoom2.jpg" height="120"> |
 | DemoSettings | einfacher SettingsDialog  | <img src="screenshots/DemoSettings.jpg" height="120"> |
-| DemoToolbarNavigation | Verwwendung einer Toolbar (ohne Fragments) und OptionsMenu | <img src="screenshots/DemoToolbarNavigation.jpg" height="120"> |
+| DemoToolbarNavigation | Verwwendung einer Toolbar/Navigation Drawer (ohne Fragments) und OptionsMenu | <img src="screenshots/DemoToolbarNavigation.jpg" height="120"> |
 | LayoutDemos | einfaches ConstraintLayout  | <img src="screenshots/LayoutDemos.jpg" height="120"> |
 
 - :
